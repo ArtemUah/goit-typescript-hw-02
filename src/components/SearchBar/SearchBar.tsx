@@ -11,7 +11,7 @@ const SearchBar: React.FC<SearchBarProps> = ({onSearch}) => {
     return (
     <header className={css.header}>
         <form className={css.container} 
-        onSubmit={(e: FormEvent)=> {
+        onSubmit={(e:FormEvent)=> {
           e.preventDefault();
           onSearch(e.target.input.value);
           e.target.reset();

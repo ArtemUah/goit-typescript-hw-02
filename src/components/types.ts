@@ -2,7 +2,7 @@ export interface Photo {
     description: string;
     urls: {
         full: string;
-        small: string;
+        small?: string;
     };
     user: {
         name: string;
@@ -19,4 +19,5 @@ export interface ModalInterface {
     user: {
         name:string;
     };
+    id:string;
 }

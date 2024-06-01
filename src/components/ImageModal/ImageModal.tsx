@@ -22,12 +22,12 @@ const customStyles = {
 
   interface ImageModalProps {
     isOpen: boolean;
-    item: Photo;
+    item: Photo | null;
     closeModal: () => void;
   }
 
  const ImageModal: React.FC<ImageModalProps> = ({isOpen, item, closeModal}) => {
-   return ( <Modal className={css.container} isOpen={isOpen} onRequestClose={closeModal} 
+   return (item && <Modal className={css.container} isOpen={isOpen} onRequestClose={closeModal} 
    style={customStyles}>
     {item.description && <h3>{item.description}</h3>}
     <div className={css.container}>

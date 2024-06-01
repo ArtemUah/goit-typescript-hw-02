@@ -10,7 +10,6 @@ import ImageModal from './ImageModal/ImageModal';
 import toast, { Toaster } from 'react-hot-toast';
 import { ModalInterface, Photo } from './types';
 
-
 Modal.setAppElement('#root');
 function App() {
 const [photos, setPhotos]=useState<Photo[]>([]);
@@ -45,6 +44,7 @@ useEffect(()=>{
       setIsLoading(true);
       setLoadMore(false);
       const data = await fetchPhotos(query, page);
+      console.log(data)
       setPhotos((prevState)=>{
         return [...prevState, ...data.results];
       });
@@ -73,14 +73,13 @@ useEffect(()=>{
 },[query, page]);
 
 const [opened, setOpened] = useState<boolean>(false)
-const [openPhoto, setOpenPhoto]= useState<ModalInterface>({urls:{
-  full: 'none'
-}, description: 'none', user: {name:'none'}});
+const [openPhoto, setOpenPhoto]= useState<Photo | null>(null);
 
 const handleChoosePhoto = (id:string): void => {
 const chosenPhoto = photos.filter(photo=> photo.id === id);
 setOpenPhoto({...chosenPhoto[0]});
 setOpened(true);
+console.log(openPhoto);
 }
 
 const closeModal = () => {setOpened(false)}
