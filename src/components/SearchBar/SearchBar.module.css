@@ -1,0 +1,37 @@
+.header {
+    box-sizing: border-box;
+    background-color: blue;
+    padding: 5px 0px;
+}
+
+.container {
+    display: flex;
+    margin-left: 10px;
+    align-items: center;
+    background-color: white;
+    margin: 0 auto;
+    width: 200px;
+}
+
+.inputField {
+    border: none;
+    font-size: small;
+    height: 20px;
+}
+
+.inputField:focus {
+    outline: none;
+}
+
+.btn {
+    background-color: transparent;
+    border: none;
+}
+
+.btn:hover{
+    cursor: pointer;
+}
+
+.icon {
+    color: blue;
+}

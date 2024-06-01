@@ -1,0 +1,12 @@
+.btn {
+    display: block;
+    margin: auto;
+    width: 150px;
+    background-color: blue;
+    color: white;
+    margin-left: auto;
+}
+
+.btn:hover {
+    cursor: pointer;
+}
