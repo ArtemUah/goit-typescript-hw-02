@@ -1,9 +1,10 @@
-import { ThreeDots } from "react-loader-spinner"
-import css from '../Loader/Loader.module.css'
+import { ThreeDots } from "react-loader-spinner";
+import css from "../Loader/Loader.module.css";
 
-export default function Loader () {
-    return (<div className={css.container}>
-        <ThreeDots
+export default function Loader() {
+  return (
+    <div className={css.container}>
+      <ThreeDots
         visible={true}
         height="80"
         width="80"
@@ -12,6 +13,7 @@ export default function Loader () {
         ariaLabel="three-dots-loading"
         wrapperStyle={{}}
         wrapperClass=""
-        />
-    </div>)
+      />
+    </div>
+  );
 }
