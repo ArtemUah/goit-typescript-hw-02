@@ -1,14 +1,19 @@
 import { FaSearch } from "react-icons/fa";
 import css from '../SearchBar/SearchBar.module.css'
+import React, { FormEvent } from "react";
 
-export default function ({onSearch}) {
-    
+interface SearchBarProps {
+  onSearch: (id:string) => void;
+};
+
+
+const SearchBar: React.FC<SearchBarProps> = ({onSearch}) => {
     return (
     <header className={css.header}>
         <form className={css.container} 
-        onSubmit={(e)=> {
+        onSubmit={(e: FormEvent)=> {
           e.preventDefault();
-          onSearch(e.target.elements.input.value);
+          onSearch(e.target.input.value);
           e.target.reset();
         }} >
         <button className={css.btn} type="submit" ><FaSearch className={css.icon}/>
@@ -24,3 +29,5 @@ export default function ({onSearch}) {
       </header>
     )
 }
+
+export default SearchBar;

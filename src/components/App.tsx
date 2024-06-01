@@ -8,21 +8,22 @@ import ErrorMessage from './ErrorMessage/ErrorMessage';
 import Modal from 'react-modal';
 import ImageModal from './ImageModal/ImageModal';
 import toast, { Toaster } from 'react-hot-toast';
+import { ModalInterface, Photo } from './types';
+
 
 Modal.setAppElement('#root');
-
 function App() {
-const [photos, setPhotos]=useState([]);
-const [query, setQuery] = useState('');
-const [page, setPage] = useState(1);
-const [error, setError] = useState(false);
-const [isLoading, setIsLoading] = useState(false);
-const [loadMore, setLoadMore]= useState(false);
-const [totalPages, setTotalPages] = useState(0);
+const [photos, setPhotos]=useState<Photo[]>([]);
+const [query, setQuery] = useState<string | number>('');
+const [page, setPage] = useState<number>(1);
+const [error, setError] = useState<boolean>(false);
+const [isLoading, setIsLoading] = useState<boolean>(false);
+const [loadMore, setLoadMore]= useState<boolean>(false);
+const [totalPages, setTotalPages] = useState<number>(0);
 
-const handleSearch = (newQuery) => {
+const handleSearch = (newQuery: string | number): void => {
   setError(false);
-if(newQuery.trim()=== '') {
+if(newQuery.toString().trim()=== '') {
   toast.error('Please, input your search query');
 };
   setQuery(newQuery);
@@ -31,12 +32,12 @@ if(newQuery.trim()=== '') {
   setPage(1);
 };
 
-const handleLoadMore = () => {
+const handleLoadMore = ():void => {
     setPage(page + 1);
 }
 
 useEffect(()=>{
-  if(query.trim() === ''){
+  if(query.toString().trim() === ''){
     return;
   }
   async function getPhotos () {
@@ -44,7 +45,6 @@ useEffect(()=>{
       setIsLoading(true);
       setLoadMore(false);
       const data = await fetchPhotos(query, page);
-
       setPhotos((prevState)=>{
         return [...prevState, ...data.results];
       });
@@ -72,12 +72,12 @@ useEffect(()=>{
   getPhotos();
 },[query, page]);
 
-const [opened, setOpened] = useState(false)
-const [openPhoto, setOpenPhoto]= useState({urls:{
+const [opened, setOpened] = useState<boolean>(false)
+const [openPhoto, setOpenPhoto]= useState<ModalInterface>({urls:{
   full: 'none'
 }, description: 'none', user: {name:'none'}});
 
-const handleChoosePhoto = (id) => {
+const handleChoosePhoto = (id:string): void => {
 const chosenPhoto = photos.filter(photo=> photo.id === id);
 setOpenPhoto({...chosenPhoto[0]});
 setOpened(true);
