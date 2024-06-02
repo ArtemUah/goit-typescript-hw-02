@@ -21,3 +21,9 @@ export interface ModalInterface {
     };
     id:string;
 }
+
+export interface Data {
+    results: Photo[];
+    total: number;
+    total_pages: number;
+}

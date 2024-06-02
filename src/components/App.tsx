@@ -8,7 +8,7 @@ import ErrorMessage from "./ErrorMessage/ErrorMessage";
 import Modal from "react-modal";
 import ImageModal from "./ImageModal/ImageModal";
 import toast, { Toaster } from "react-hot-toast";
-import { ModalInterface, Photo } from "./types";
+import { Data, ModalInterface, Photo } from "./types";
 
 Modal.setAppElement("#root");
 function App() {
@@ -39,12 +39,11 @@ function App() {
     if (query.toString().trim() === "") {
       return;
     }
-    async function getPhotos() {
+    async function getPhotos () {
       try {
         setIsLoading(true);
         setLoadMore(false);
-        const data = await fetchPhotos(query, page);
-        console.log(data);
+        const data: Data = await fetchPhotos(query, page);
         setPhotos((prevState) => {
           return [...prevState, ...data.results];
         });
@@ -77,7 +76,6 @@ function App() {
     const chosenPhoto = photos.filter((photo) => photo.id === id);
     setOpenPhoto({ ...chosenPhoto[0] });
     setOpened(true);
-    console.log(openPhoto);
   };
 
   const closeModal = () => {
